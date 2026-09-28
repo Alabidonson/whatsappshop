@@ -1,127 +1,581 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Boutique de Marie</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>WhatsAppShop — Crée ta boutique en ligne</title>
+
+    <meta
+        name="description"
+        content="WhatsAppShop permet aux commerçants de créer facilement leur boutique en ligne et de recevoir leurs commandes sur WhatsApp."
+    >
+
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/landing.css">
 </head>
+
 <body>
-<div class="topbar">
-  <div class="topbar-inner">
-    <div class="brand">🛍️ WhatsAppShop</div>
-    <div class="topbar-actions">
-      <button class="mode-toggle" id="mode-toggle" onclick="toggleMode()">🧑‍💼 Mode commerçant</button>
-      <button class="cart-pill" id="cart-pill" onclick="document.getElementById('cart-section').scrollIntoView({behavior:'smooth'})">🛒 <span id="cart-count">0</span></button>
-    </div>
-  </div>
-</div>
 
-<div class="wrap">
-  <header>
-    <div class="mark">👋</div>
-    <h1 id="store-name">Boutique de Marie</h1>
-    <p id="store-description">Bienvenue dans notre boutique. Découvrez nos produits et commandez directement sur WhatsApp.</p>
-  </header>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-  <div class="banner" id="mode-banner" style="display:none;">
-  <strong>🧑‍💼 Mode commerçant</strong>
-  <p>Configure ta boutique et gère tes produits.</p>
+    <header class="navbar">
+        <div class="container navbar-content">
 
-  <div class="store-settings">
-    <h3>⚙️ Paramètres de la boutique</h3>
-    <p>
-  🆔 Identifiant de la boutique :
-  <strong id="store-id"></strong>
-</p>
+            <a href="index.html" class="logo">
+                🛍️ WhatsAppShop
+            </a>
 
-<p>
-  🔗 Lien de ma boutique :
-  <strong id="store-link"></strong>
-</p>
+            <nav class="nav-links">
+                <a href="#fonctionnalites">Fonctionnalités</a>
+                <a href="#comment-ca-marche">Comment ça marche ?</a>
+                <a href="#tarifs">Tarifs</a>
+                <a href="#faq">FAQ</a>
+            </nav>
 
-<button class="btn add-btn" onclick="copyStoreLink()">
-  📋 Copier le lien
-</button>
+            <div class="nav-actions">
+                <a href="pages/login.html" class="btn btn-secondary">
+                    Se connecter
+                </a>
 
-    <label for="store-name-input">Nom de la boutique</label>
-    <input
-      id="store-name-input"
-      type="text"
-      placeholder="Ex : Boutique de Marie"
-    >
+                <a href="pages/register.html" class="btn btn-primary">
+                    Créer ma boutique
+                </a>
+            </div>
 
-    <label for="store-whatsapp-input">Numéro WhatsApp</label>
-    <input
-      id="store-whatsapp-input"
-      type="tel"
-      placeholder="Ex : 229XXXXXXXX"
-    >
+        </div>
+    </header>
 
-    <label for="store-description-input">Description</label>
-    <textarea
-      id="store-description-input"
-      placeholder="Présente ta boutique en quelques mots..."
-    ></textarea>
 
-    <button class="btn add-btn" onclick="saveStoreSettings()">
-      💾 Enregistrer les paramètres
-    </button>
-  </div>
-</div>
+    <main>
 
-  <h3>Nos produits</h3>
-  <div class="add-form" id="add-form" style="display:none;">
-  <input
-    class="f-emoji"
-    id="new-emoji"
-    maxlength="2"
-    value="🛍️"
-    title="Emoji du produit"
-  >
+        <!-- =========================
+             HERO
+        ========================== -->
 
-  <input
-    class="f-name"
-    id="new-name"
-    placeholder="Nom du produit"
-  >
+        <section class="hero">
 
-  <input
-    class="f-price"
-    id="new-price"
-    type="number"
-    placeholder="Prix (FCFA)"
-  >
+            <div class="container hero-content">
 
-  <input
-    class="f-image"
-    id="new-image"
-    type="file"
-    accept="image/*"
-  >
+                <div class="hero-text">
 
-  <button class="btn add-btn" onclick="addProduct()">Ajouter</button>
-</div>
-  <div class="catalogue" id="catalogue"></div>
+                    <span class="badge">
+                        🚀 Le commerce en ligne simplifié
+                    </span>
 
-  <div id="cart-section">
-    <h3>🛒 Mon panier</h3>
-    <div id="cart-items"></div>
-    <p class="cart-empty" id="cart-empty">Ton panier est vide pour l'instant — ajoute un produit ci-dessus.</p>
-    <div class="cart-total" id="cart-total" style="display:none;">
-      <span>Total</span><span id="cart-total-amount">0 FCFA</span>
-    </div>
-    <a class="order-btn disabled" id="order-btn" href="#" target="_blank" rel="noopener">📲 Commander sur WhatsApp</a>
-  </div>
+                    <h1>
+                        Crée ta boutique en ligne
+                        <span>et vends sur WhatsApp.</span>
+                    </h1>
 
-  <footer>Boutique créée avec WhatsAppShop</footer>
-</div>
+                    <p>
+                        WhatsAppShop permet aux commerçants de créer leur
+                        boutique en ligne, présenter leurs produits et
+                        recevoir directement les commandes de leurs clients
+                        sur WhatsApp.
+                    </p>
 
-<div id="toast"></div>
+                    <div class="hero-actions">
 
-<script src="script.js"></script>
+                        <a href="pages/register.html" class="btn btn-primary btn-large">
+                            🚀 Créer ma boutique
+                        </a>
+
+                        <a href="#comment-ca-marche" class="btn btn-secondary btn-large">
+                            Découvrir comment ça marche
+                        </a>
+
+                    </div>
+
+                    <div class="hero-note">
+                        ✓ Plan Découverte disponible gratuitement
+                        &nbsp; • &nbsp;
+                        ✓ Sans installation
+                    </div>
+
+                </div>
+
+
+                <div class="hero-card">
+
+                    <div class="dashboard-preview-header">
+
+                        <div>
+                            <span class="preview-label">ESPACE COMMERÇANT</span>
+                            <strong>Tableau de bord</strong>
+                        </div>
+
+                        <span class="preview-avatar">👤</span>
+
+                    </div>
+
+
+                    <div class="dashboard-preview-greeting">
+
+                        <strong>Bonjour, commerçant 👋</strong>
+
+                        <p>
+                            Voici un aperçu de ton activité.
+                        </p>
+
+                    </div>
+
+
+                    <div class="dashboard-preview-stats">
+
+                        <div class="preview-stat">
+                            <span>📦</span>
+                            <strong>12</strong>
+                            <small>Produits</small>
+                        </div>
+
+                        <div class="preview-stat">
+                            <span>🛒</span>
+                            <strong>35</strong>
+                            <small>Commandes</small>
+                        </div>
+
+                        <div class="preview-stat">
+                            <span>📊</span>
+                            <strong>85%</strong>
+                            <small>Activité</small>
+                        </div>
+
+                    </div>
+
+
+                    <div class="dashboard-preview-menu">
+
+                        <div>
+                            <span>📦</span>
+
+                            <div>
+                                <strong>Mes produits</strong>
+                                <small>Gérer mon catalogue</small>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <span>📊</span>
+
+                            <div>
+                                <strong>Mes statistiques</strong>
+                                <small>Suivre mon activité</small>
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <span>🔗</span>
+
+                            <div>
+                                <strong>Ma boutique</strong>
+                                <small>Partager mon lien</small>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <button class="mockup-button">
+                        🔗 Voir ma boutique
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FONCTIONNALITÉS
+        ========================== -->
+
+        <section id="fonctionnalites" class="section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        FONCTIONNALITÉS
+                    </span>
+
+                    <h2>
+                        Tout ce qu'il faut pour commencer à vendre.
+                    </h2>
+
+                    <p>
+                        Une solution pensée pour les commerçants qui
+                        veulent vendre simplement sur Internet.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <article class="feature-card">
+                        <div class="feature-icon">🏪</div>
+                        <h3>Ta propre boutique</h3>
+                        <p>
+                            Crée une boutique personnalisée avec ton nom,
+                            ta description et tes produits.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon">📦</div>
+                        <h3>Gestion des produits</h3>
+                        <p>
+                            Ajoute, modifie et supprime facilement tes
+                            produits et leurs prix.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon">📲</div>
+                        <h3>Commandes WhatsApp</h3>
+                        <p>
+                            Tes clients peuvent commander directement
+                            auprès de toi sur WhatsApp.
+                        </p>
+                    </article>
+
+
+                    <article class="feature-card">
+                        <div class="feature-icon">📊</div>
+                        <h3>Tableau de bord</h3>
+                        <p>
+                            Suis ton activité et retrouve tes commandes
+                            depuis ton espace commerçant.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             COMMENT ÇA MARCHE
+        ========================== -->
+
+        <section id="comment-ca-marche" class="section section-alt">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        COMMENT ÇA MARCHE ?
+                    </span>
+
+                    <h2>
+                        Commence à vendre en quelques étapes.
+                    </h2>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+                    <article class="step-card">
+
+                        <span class="step-number">1</span>
+
+                        <h3>Crée ton compte</h3>
+
+                        <p>
+                            Inscris-toi gratuitement sur WhatsAppShop.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <span class="step-number">2</span>
+
+                        <h3>Choisis ton offre</h3>
+
+                        <p>
+                            Commence gratuitement ou passe à l'offre Pro.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <span class="step-number">3</span>
+
+                        <h3>Configure ta boutique</h3>
+
+                        <p>
+                            Ajoute ton nom, tes produits, tes prix et
+                            ton numéro WhatsApp.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <span class="step-number">4</span>
+
+                        <h3>Partage ton lien</h3>
+
+                        <p>
+                            Partage ta boutique avec tes clients et
+                            commence à recevoir des commandes.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             TARIFS
+        ========================== -->
+
+        <section id="tarifs" class="section">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        TARIFS
+                    </span>
+
+                    <h2>
+                        Choisis l'offre adaptée à ton activité.
+                    </h2>
+
+                </div>
+
+
+                <div class="pricing-grid">
+
+                    <article class="pricing-card">
+
+                        <span class="pricing-label">
+                            DÉCOUVERTE
+                        </span>
+
+                        <h3>0 FCFA</h3>
+
+                        <p class="pricing-period">
+                            Gratuit
+                        </p>
+
+                        <ul>
+                            <li>✓ Jusqu'à 5 produits</li>
+                            <li>✓ Boutique en ligne</li>
+                            <li>✓ Commandes WhatsApp</li>
+                            <li>✓ Lien de boutique</li>
+                        </ul>
+
+                        <a
+                            href="pages/register.html"
+                            class="btn btn-secondary btn-full"
+                        >
+                            Commencer gratuitement
+                        </a>
+
+                    </article>
+
+
+                    <article class="pricing-card pricing-featured">
+
+                        <span class="pricing-label">
+                            ⭐ PRO
+                        </span>
+
+                        <h3>5 000 FCFA</h3>
+
+                        <p class="pricing-period">
+                            par mois
+                        </p>
+
+                        <ul>
+                            <li>✓ Jusqu'à 50 produits</li>
+                            <li>✓ Toutes les fonctionnalités Découverte</li>
+                            <li>✓ Statistiques</li>
+                            <li>✓ Gestion avancée</li>
+                            <li>✓ Support prioritaire</li>
+                        </ul>
+
+                        <a
+                            href="pages/register.html"
+                            class="btn btn-primary btn-full"
+                        >
+                            Choisir Pro
+                        </a>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FAQ
+        ========================== -->
+
+        <section id="faq" class="section section-alt">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        FAQ
+                    </span>
+
+                    <h2>
+                        Questions fréquentes
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-list">
+
+                    <details>
+                        <summary>
+                            Dois-je avoir un site Internet ?
+                        </summary>
+
+                        <p>
+                            Non. WhatsAppShop te permet de créer ta boutique
+                            directement depuis la plateforme.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Mes clients doivent-ils créer un compte ?
+                        </summary>
+
+                        <p>
+                            Non. Le client peut consulter ta boutique,
+                            choisir ses produits et commander directement
+                            via WhatsApp.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Puis-je commencer gratuitement ?
+                        </summary>
+
+                        <p>
+                            Oui. L'offre Découverte permet de commencer
+                            gratuitement avec jusqu'à 5 produits.
+                        </p>
+                    </details>
+
+
+                    <details>
+                        <summary>
+                            Comment vais-je recevoir mes commandes ?
+                        </summary>
+
+                        <p>
+                            Les commandes peuvent être envoyées directement
+                            vers ton numéro WhatsApp.
+                        </p>
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CTA
+        ========================== -->
+
+        <section class="cta-section">
+
+            <div class="container cta-content">
+
+                <h2>
+                    Prêt à créer ta boutique ?
+                </h2>
+
+                <p>
+                    Commence gratuitement et présente tes produits
+                    à tes clients en ligne.
+                </p>
+
+                <a
+                    href="pages/register.html"
+                    class="btn btn-primary btn-large"
+                >
+                    🚀 Créer ma boutique
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer class="footer">
+
+        <div class="container footer-content">
+
+            <div>
+                <strong>🛍️ WhatsAppShop</strong>
+
+                <p>
+                    La boutique en ligne simple pour les commerçants.
+                </p>
+            </div>
+
+            <div class="footer-links">
+                <a href="#fonctionnalites">Fonctionnalités</a>
+                <a href="#tarifs">Tarifs</a>
+                <a href="#faq">FAQ</a>
+                <a href="pages/login.html">Connexion</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            © 2026 WhatsAppShop — Tous droits réservés.
+        </div>
+
+    </footer>
+
 </body>
 </html>
+

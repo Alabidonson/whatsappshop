@@ -1,7 +1,15 @@
 const WHATSAPP_NUMBER = "2290144755155"; // numéro de démonstration — à remplacer par celui du commerçant
 const STORAGE_KEY = "whatsappshop_demo_products";
-
 const STORE_ID_KEY = "whatsappshop_store_id";
+
+const SUPABASE_URL = "https://aqlbpenmniggihuppmgv.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_H7mdvw3YiFaUTbeJYqAenA_tLU84ZNl";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
 function getStoreIdFromUrl() {
   const params = new URLSearchParams(window.location.search);
   return params.get("boutique");
@@ -408,4 +416,47 @@ function displayStoreId() {
   if (storeIdElement) {
     storeIdElement.textContent = getStoreId();
   }
+}
+
+async function loginMerchant() {
+  const email = document.getElementById("auth-email").value.trim();
+  const password = document.getElementById("auth-password").value;
+
+  const status = document.getElementById("auth-status");
+
+  if (!email || !password) {
+    status.textContent = "Veuillez saisir votre e-mail et votre mot de passe.";
+    return;
+  }
+
+  status.textContent = "Connexion en cours...";
+
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
+
+  if (error) {
+    console.error(error);
+    status.textContent = "Erreur : " + error.message;
+    return;
+  }
+
+  console.log("Utilisateur connecté :", data.user);
+
+  status.textContent = "✅ Connexion réussie !";
+
+  document.getElementById("logout-btn").style.display = "block";
+}
+
+async function logoutMerchant() {
+  const { error } = await supabaseClient.auth.signOut();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  document.getElementById("auth-status").textContent = "Déconnecté.";
+  document.getElementById("logout-btn").style.display = "none";
 }
