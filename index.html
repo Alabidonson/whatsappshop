@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Boutique de Marie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">🛍️ WhatsAppShop</div>
+    <div class="topbar-actions">
+      <button class="mode-toggle" id="mode-toggle" onclick="toggleMode()">🧑‍💼 Mode commerçant</button>
+      <button class="cart-pill" id="cart-pill" onclick="document.getElementById('cart-section').scrollIntoView({behavior:'smooth'})">🛒 <span id="cart-count">0</span></button>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <header>
+    <div class="mark">👋</div>
+    <h1 id="store-name">Boutique de Marie</h1>
+    <p id="store-description">Bienvenue dans notre boutique. Découvrez nos produits et commandez directement sur WhatsApp.</p>
+  </header>
+
+  <div class="banner" id="mode-banner" style="display:none;">
+  <strong>🧑‍💼 Mode commerçant</strong>
+  <p>Configure ta boutique et gère tes produits.</p>
+
+  <div class="store-settings">
+    <h3>⚙️ Paramètres de la boutique</h3>
+    <p>
+  🆔 Identifiant de la boutique :
+  <strong id="store-id"></strong>
+</p>
+
+<p>
+  🔗 Lien de ma boutique :
+  <strong id="store-link"></strong>
+</p>
+
+<button class="btn add-btn" onclick="copyStoreLink()">
+  📋 Copier le lien
+</button>
+
+    <label for="store-name-input">Nom de la boutique</label>
+    <input
+      id="store-name-input"
+      type="text"
+      placeholder="Ex : Boutique de Marie"
+    >
+
+    <label for="store-whatsapp-input">Numéro WhatsApp</label>
+    <input
+      id="store-whatsapp-input"
+      type="tel"
+      placeholder="Ex : 229XXXXXXXX"
+    >
+
+    <label for="store-description-input">Description</label>
+    <textarea
+      id="store-description-input"
+      placeholder="Présente ta boutique en quelques mots..."
+    ></textarea>
+
+    <button class="btn add-btn" onclick="saveStoreSettings()">
+      💾 Enregistrer les paramètres
+    </button>
+  </div>
+</div>
+
+  <h3>Nos produits</h3>
+  <div class="add-form" id="add-form" style="display:none;">
+  <input
+    class="f-emoji"
+    id="new-emoji"
+    maxlength="2"
+    value="🛍️"
+    title="Emoji du produit"
+  >
+
+  <input
+    class="f-name"
+    id="new-name"
+    placeholder="Nom du produit"
+  >
+
+  <input
+    class="f-price"
+    id="new-price"
+    type="number"
+    placeholder="Prix (FCFA)"
+  >
+
+  <input
+    class="f-image"
+    id="new-image"
+    type="file"
+    accept="image/*"
+  >
+
+  <button class="btn add-btn" onclick="addProduct()">Ajouter</button>
+</div>
+  <div class="catalogue" id="catalogue"></div>
+
+  <div id="cart-section">
+    <h3>🛒 Mon panier</h3>
+    <div id="cart-items"></div>
+    <p class="cart-empty" id="cart-empty">Ton panier est vide pour l'instant — ajoute un produit ci-dessus.</p>
+    <div class="cart-total" id="cart-total" style="display:none;">
+      <span>Total</span><span id="cart-total-amount">0 FCFA</span>
+    </div>
+    <a class="order-btn disabled" id="order-btn" href="#" target="_blank" rel="noopener">📲 Commander sur WhatsApp</a>
+  </div>
+
+  <footer>Boutique créée avec WhatsAppShop</footer>
+</div>
+
+<div id="toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
